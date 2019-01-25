@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pojian.xyz/categories/index.html</loc>
+    
+    <lastmod>2019-01-25T15:58:08.784Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://pojian.xyz/tags/index.html</loc>
+    
+    <lastmod>2019-01-25T10:12:46.135Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://pojian.xyz/2019/01/22/nginxbase/</loc>
+    
+    <lastmod>2019-01-25T09:08:23.466Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://pojian.xyz/2019/01/24/envideo/</loc>
     
     <lastmod>2019-01-24T15:14:14.114Z</lastmod>
@@ -37,21 +58,7 @@
   </url>
   
   <url>
-    <loc>https://pojian.xyz/tags/index.html</loc>
-    
-    <lastmod>2019-01-16T10:29:23.116Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://pojian.xyz/2019/01/16/hello-world/</loc>
-    
-    <lastmod>2019-01-16T10:29:23.090Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://pojian.xyz/categories/index.html</loc>
     
     <lastmod>2019-01-16T10:29:23.090Z</lastmod>
     
