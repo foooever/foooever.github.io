@@ -1,112 +1,27 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
+<html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-  <meta name="google-site-verification" content="gjDw6lF0UZmsmj9X8aaFj-oMIUn_xNtKWBjlTAsaE38">
-
-
-
-
-
-
-
-  <meta name="baidu-site-verification" content="hcpV6kBYO1">
-
-
-
-
-
-  
-  
     
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+    
+
+    
 
 
 
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="特点 支持高并发 内存消耗少 开源可商用  一、安装Mac 下安装1、安装 brew 命令1ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; 2、安装 Nginx1brew install nginx 3、启动 Nginx1nginx 如果没有报错的">
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Nginx 入门篇 | 破茧 | 愿你的代码可改变世界</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="nginx,centos">
+    <meta name="description" content="特点 支持高并发 内存消耗少 开源可商用  一、安装Mac 下安装1、安装 brew 命令1ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; 2、安装 Nginx1brew install nginx 3、启动 Nginx1nginx 如果没有报错的">
 <meta name="keywords" content="nginx,centos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx 入门篇">
@@ -136,401 +51,173 @@
 <meta name="twitter:title" content="Nginx 入门篇">
 <meta name="twitter:description" content="特点 支持高并发 内存消耗少 开源可商用  一、安装Mac 下安装1、安装 brew 命令1ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; 2、安装 Nginx1brew install nginx 3、启动 Nginx1nginx 如果没有报错的">
 <meta name="twitter:image" content="https://wx3.sinaimg.cn/large/889d1a94gy1fzf7pigjyjj20mr08fabf.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="破茧" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
 
-
-
-  <link rel="alternate" href="/atom.xml" title="破茧 研究Web前端开发技术和互联网产品" type="application/atom+xml">
-
-
-
-
-  <link rel="canonical" href="https://pojian.xyz/2019/01/22/nginxbase/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>Nginx 入门篇 | 破茧 研究Web前端开发技术和互联网产品</title>
-  
-
-
-
-
-
-
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?f49309b283909dccd81a5283f87d4cb8";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+    <!-- custom head -->
+    
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body>
+    <div id="loading" class="active"></div>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">破茧</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">PAN</h5>
+          <a href="mailto:719625504@qq.com" title="719625504@qq.com" class="mail">719625504@qq.com</a>
+        </hgroup>
+      </div>
     </div>
-    
-      
-        <h1 class="site-subtitle" itemprop="description">愿你的代码可改变世界</h1>
-      
-    
-    
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/webw3c" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom">
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
   </div>
+</aside>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Nginx 入门篇</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
         
         
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
-          
-          <li class="menu-item menu-item-home">
+    </div>
+</header>
+<header class="content-header post-header">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-
-      
-      
-    </ul>
-  
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+    <div class="container fade-scale">
+        <h1 class="title">Nginx 入门篇</h1>
+        <h5 class="subtitle">
             
+                <time datetime="2019-01-22T11:09:40.000Z" itemprop="datePublished" class="page-time">
+  2019-01-22
+</time>
 
-          
-          <div id="content" class="content">
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Web/">Web</a></li></ul>
+
             
+        </h5>
+    </div>
 
-  <div id="posts" class="posts-expand">
     
 
-  
 
-  
-  
-  
+</header>
 
-  
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pojian.xyz/2019/01/22/nginxbase/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="PAN">
-      <meta itemprop="description" content="研究Web前端开发技术和互联网产品">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/8156261?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="破茧 研究Web前端开发技术和互联网产品">
-    </span>
-
+<div class="container body-wrap">
     
-      <header class="post-header">
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#特点"><span class="post-toc-number">1.</span> <span class="post-toc-text">特点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">一、安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、Nginx-配置文件解析"><span class="post-toc-number">3.</span> <span class="post-toc-text">二、Nginx 配置文件解析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、启动、停止、重启等常用操作"><span class="post-toc-number">4.</span> <span class="post-toc-text">三、启动、停止、重启等常用操作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、自定义错误页"><span class="post-toc-number">5.</span> <span class="post-toc-text">四、自定义错误页</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#五、访问权限设置"><span class="post-toc-number">6.</span> <span class="post-toc-text">五、访问权限设置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#六、配置虚拟主机"><span class="post-toc-number">7.</span> <span class="post-toc-text">六、配置虚拟主机</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#七、反向代理"><span class="post-toc-number">8.</span> <span class="post-toc-text">七、反向代理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#八、开启-Gzip-压缩"><span class="post-toc-number">9.</span> <span class="post-toc-text">八、开启 Gzip 压缩</span></a></li></ol>
+        </nav>
+    </aside>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">Nginx 入门篇
 
-              
-            
-          </h2>
-        
+<article id="post-nginxbase" class="post-article article-type-post fade" itemprop="blogPost">
 
+    <div class="post-card">
+        <h1 class="post-card-title">Nginx 入门篇</h1>
         <div class="post-meta">
-          <span class="post-time">
+            <time class="post-time" title="2019-01-22 19:09:40" datetime="2019-01-22T11:09:40.000Z" itemprop="datePublished">2019-01-22</time>
 
             
-            
-            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Web/">Web</a></li></ul>
+
+
 
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
 
-              
-                
-              
-
-              <time title="创建时间：2019-01-22 19:09:40" itemprop="dateCreated datePublished" datetime="2019-01-22T19:09:40+08:00">2019-01-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-25 17:08:23" itemprop="dateModified" datetime="2019-01-25T17:08:23+08:00">2019-01-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon">
-            <i class="fa fa-eye"></i>
-             阅读次数： 
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">5.1k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">5 分钟</span>
-              
-            </div>
-          
-
-          
 
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
 <li>支持高并发</li>
 <li>内存消耗少</li>
 <li>开源可商用</li>
@@ -545,7 +232,13 @@
 <p>查看 yum 是否存在</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum list | grep nginx</span><br></pre></td></tr></table></figure>
 <p>如果存在会如以下图示</p>
-<p><img src="https://wx3.sinaimg.cn/large/889d1a94gy1fzf7pigjyjj20mr08fabf.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://wx3.sinaimg.cn/large/889d1a94gy1fzf7pigjyjj20mr08fabf.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>和官网的对比一下发现不是最新的，所以要增加 nginx 的 yum 源，输入以下命令新建</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/nginx.repo</span><br></pre></td></tr></table></figure>
 <p>并把以下内容粘贴进去</p>
@@ -555,11 +248,23 @@
 <p>接着就是安装了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx</span><br></pre></td></tr></table></figure>
 <p>安装完成后输入 <font color="#f60">nginx -v</font> 查看版本号，如果显示版本就表示安装成功了</p>
-<p><img src="https://ws4.sinaimg.cn/large/889d1a94gy1fzf88dbsxnj20ng0e140b.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ws4.sinaimg.cn/large/889d1a94gy1fzf88dbsxnj20ng0e140b.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <h2 id="二、Nginx-配置文件解析"><a href="#二、Nginx-配置文件解析" class="headerlink" title="二、Nginx 配置文件解析"></a>二、Nginx 配置文件解析</h2><h2 id="三、启动、停止、重启等常用操作"><a href="#三、启动、停止、重启等常用操作" class="headerlink" title="三、启动、停止、重启等常用操作"></a>三、启动、停止、重启等常用操作</h2><p><strong>启动</strong><br>1、直接使用 nginx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure></p>
 <p>2、使用 systemctl 命令，这个是 Linux 的服务启动命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx.service</span><br></pre></td></tr></table></figure></p>
 <p>有没有启动成功呢？可以输入以下命令查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep nginx</span><br></pre></td></tr></table></figure></p>
-<p><img src="//wx4.sinaimg.cn/large/889d1a94gy1fzfeh1ugvwj20nc02baab.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//wx4.sinaimg.cn/large/889d1a94gy1fzfeh1ugvwj20nc02baab.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p><strong>停止</strong><br>1、立即停止服务。这种方法无论进程是否在运行，都直接停止进程。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx  -s stop</span><br></pre></td></tr></table></figure></p>
 <p>2、立即停止服务。这种方法相对没那么强硬，需要在进程完成当前工作后再停止。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx  -s quit</span><br></pre></td></tr></table></figure></p>
 <p>3、killall 直接杀死进程。如果上面的两个方法无效，可以试试这个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall nginx</span><br></pre></td></tr></table></figure></p>
@@ -569,17 +274,41 @@
 <p><strong>查看端口号</strong><br>有时候需要查看哪些端口在运行，或者被占用了，可以使用 netstat 命令查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -tlnp</span><br></pre></td></tr></table></figure></p>
 <h2 id="四、自定义错误页"><a href="#四、自定义错误页" class="headerlink" title="四、自定义错误页"></a>四、自定义错误页</h2><p><strong>自定义错误页</strong><br>网站发生错误时一般会返回相应的状态码，比如500、502、503等等，或者404页面。那这些对应的返回页面在 Nginx 里怎么配置呢。</p>
 <p>进入 /etc/nginx/conf.d 目录 打开 default.conf 配置文件就可以作相应的修改了</p>
-<p><img src="//ws1.sinaimg.cn/large/889d1a94gy1fzfg3vng9pj20n5027aa3.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ws1.sinaimg.cn/large/889d1a94gy1fzfg3vng9pj20n5027aa3.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>添加404页面配置，当然你还要在网站根目录创建一个404.html页面才行</p>
-<p><img src="//wx1.sinaimg.cn/large/889d1a94gy1fzfged7tgjj20nu0i876t.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//wx1.sinaimg.cn/large/889d1a94gy1fzfged7tgjj20nu0i876t.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>其中 /404.html 也可以改成一个链接地址如： (<a href="https://pojian.xyz)[https://pojian.xyz]，这样当你访问为404状态时就会直接跳转到你配置的这个链接地址。">https://pojian.xyz)[https://pojian.xyz]，这样当你访问为404状态时就会直接跳转到你配置的这个链接地址。</a></p>
 <p>最后还需要你执行重载配置文件或者重启服务器，再访问相应的页面就会看到对应的效果页。</p>
 <h2 id="五、访问权限设置"><a href="#五、访问权限设置" class="headerlink" title="五、访问权限设置"></a>五、访问权限设置</h2><p><strong>指令优先级</strong><br>打开配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure></p>
 <p>在 location 里填写 deny 和 allow 配置信息，deny 和 allow 后面可以填写 ip 或者一个 ip 段，再或者 all，all 表示全部，比如这里我填写的是我本机的ip，allow 表示允许该 ip 的访问，接着重启 nginx</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx -s quit</span><br><span class="line">nginx</span><br></pre></td></tr></table></figure>
-<p><img src="//wx3.sinaimg.cn/large/889d1a94gy1fzgkp66ohwj219e0dugmz.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//wx3.sinaimg.cn/large/889d1a94gy1fzgkp66ohwj219e0dugmz.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>上面的配置表示只允许 113.118.186.11 进行访问，其他的IP是禁止访问</p>
-<p><img src="//ws2.sinaimg.cn/large/889d1a94gy1fzgl1ra9b1j21jg076jrr.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ws2.sinaimg.cn/large/889d1a94gy1fzgl1ra9b1j21jg076jrr.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>如果上面的 allow 和 deny 位置互换一下呢？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deny all;</span><br><span class="line">allow 113.118.186.11;</span><br></pre></td></tr></table></figure>
 <p>这里你会发再所有 ip 都不能访问了，这就说明了配置对顺序是有要求的，同一个块下的两个权限指令，先出现的设置会覆盖后出现的设置。</p>
@@ -588,36 +317,90 @@
 <p>可以直接配置了主配置文件 etc/nginx/nginx.conf，也可以配在子配置文件目录下 etc/nginx/conf.d，这里拿配置在子文件做示例</p>
 <p>etc/nginx/conf.d/default.conf 默认监听的是 <strong>80</strong> 端口，指向的目录是 /data/www</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/default.conf</span><br></pre></td></tr></table></figure>
-<p><img src="//ws3.sinaimg.cn/large/889d1a94gy1fzhod50ihzj21660bct9n.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ws3.sinaimg.cn/large/889d1a94gy1fzhod50ihzj21660bct9n.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>现在我们配置添加一个新的虚拟主机，监听 <strong>8081</strong> 端口</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/8081.conf</span><br></pre></td></tr></table></figure>
 <p>8081.conf 具体配置如下，监听的端口为 <strong>8081</strong>，指向的目录是 /data/www/8081，和 <strong>80</strong> 端口指向的目录不一样</p>
-<p><img src="//wx4.sinaimg.cn/large/889d1a94gy1fzhoi9spuxj216i04wdg7.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//wx4.sinaimg.cn/large/889d1a94gy1fzhoi9spuxj216i04wdg7.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>这里需要你自己去新建一个 8081 目录和 index.html 文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data/www/8081</span><br><span class="line">vim /data/www/8081/index.html</span><br></pre></td></tr></table></figure>
 <p>最后访问 xxx.com 和 xxx.com:8081 会访问到不同的站点，当然前提是你的域名已经解析到你的服务器，要不然的话就只能通过 ip 访问了 xxx.xxx.xx.xx 和 xxx.xxx.xx.xx:8081 访问。</p>
 <p><strong>基于域名配置</strong></p>
 <p>基于域名配置，我这里先说一个前提，就是你的域名已经成功解析到服务器。</p>
-<p><img src="//wx3.sinaimg.cn/large/889d1a94gy1fzhosuczh6j21u2080jsw.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//wx3.sinaimg.cn/large/889d1a94gy1fzhosuczh6j21u2080jsw.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>下面开始配置 nginx</p>
 <p>/etc/nginx/conf.d/default.conf 配置文件监听的是 <strong>80</strong> 端口，指向目录是 /data/www，注意看 server_name 改成域名地址</p>
-<p><img src="//wx2.sinaimg.cn/large/889d1a94gy1fzhobuxtkxj21660bcdgt.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//wx2.sinaimg.cn/large/889d1a94gy1fzhobuxtkxj21660bcdgt.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>接着我们来配置另外一个虚拟站点 /etc/nginx/conf.d/8081.conf，注意了 这里监听我端口也是 <strong>80</strong> 端口，不是其他的端口号，但 server_name 和 root 目录跟上面的不一样</p>
-<p><img src="//ws3.sinaimg.cn/large/889d1a94gy1fzhshp7dttj216405ogm3.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ws3.sinaimg.cn/large/889d1a94gy1fzhshp7dttj216405ogm3.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>这样当你访问 nginx.pojian.xyz 和 nginx2.pojian.xyz 时访问会是配置的不同的两个站点。</p>
 <h2 id="七、反向代理"><a href="#七、反向代理" class="headerlink" title="七、反向代理"></a>七、反向代理</h2><p><strong>正向代理</strong><br>A同学在大众创业、万众创新的大时代背景下开启他的创业之路，目前他遇到的最大的一个问题就是启动资金，于是他决定去找马云爸爸借钱，可想而知，最后碰一鼻子灰回来了，情急之下，他想到一个办法，找关系开后门，经过一番消息打探，原来A同学的大学老师王老师是马云的同学，于是A同学找到王老师，托王老师帮忙去马云那借500万过来，当然最后事成了。不过马云并不知道这钱是A同学借的，马云是借给王老师的，最后由王老师转交给A同学。这里的王老师在这个过程中扮演了一个非常关键的角色，就是代理，也可以说是正向代理，王老师代替A同学办这件事，这个过程中，真正借钱的人是谁，马云是不知道的，这点非常关键。</p>
-<p>我们常说的代理也就是只正向代理，正向代理的过程，它隐藏了真实的请求客户端，服务端不知道真实的客户端是谁，客户端请求的服务都被代理服务器代替来请求，某些科学上网工具扮演的就是典型的正向代理角色。用浏览器访问 <a href="http://www.google.com" target="_blank" rel="noopener">http://www.google.com</a>  时，被残忍的block，于是你可以在国外搭建一台代理服务器，让代理帮我去请求google.com，代理把请求返回的相应结构再返回给我。<br><img src="//wx4.sinaimg.cn/large/889d1a94gy1fzittlk5sgj20zu0kq1kx.jpg" alt="image"></p>
+<p>我们常说的代理也就是只正向代理，正向代理的过程，它隐藏了真实的请求客户端，服务端不知道真实的客户端是谁，客户端请求的服务都被代理服务器代替来请求，某些科学上网工具扮演的就是典型的正向代理角色。用浏览器访问 <a href="http://www.google.com" target="_blank" rel="noopener">http://www.google.com</a>  时，被残忍的block，于是你可以在国外搭建一台代理服务器，让代理帮我去请求google.com，代理把请求返回的相应结构再返回给我。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//wx4.sinaimg.cn/large/889d1a94gy1fzittlk5sgj20zu0kq1kx.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure></p>
 <p><strong>反向代理</strong></p>
 <p>大家都有过这样的经历，拨打10086客服电话，可能一个地区的10086客服有几个或者几十个，你永远都不需要关心在电话那头的是哪一个，叫什么，男的，还是女的，漂亮的还是帅气的，你都不关心，你关心的是你的问题能不能得到专业的解答，你只需要拨通了10086的总机号码，电话那头总会有人会回答你，只是有时慢有时快而已。那么这里的10086总机号码就是我们说的反向代理。客户不知道真正提供服务人的是谁。</p>
 <p>反向代理隐藏了真实的服务端，当我们请求<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 的时候，就像拨打10086一样，背后可能有成千上万台服务器为我们服务，但具体是哪一台，你不知道，也不需要知道，你只需要知道反向代理服务器是谁就好了，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 就是我们的反向代理服务器，反向代理服务器会帮我们把请求转发到真实的服务器那里去。Nginx就是性能非常好的反向代理服务器，具体访问哪台服务器Server是由Nginx来控制的，一般用来做负载均衡。</p>
-<p><img src="//ws2.sinaimg.cn/large/889d1a94gy1fzitu7g08oj20sk0nk7pb.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ws2.sinaimg.cn/large/889d1a94gy1fzitu7g08oj20sk0nk7pb.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>两者的区别在于代理的对象不一样：<strong>正向代理代理的对象是客户端，反向代理代理的对象是服务端</strong></p>
 <p><strong>最简单的反向代理</strong></p>
 <p>下面就说一个最简单的反向代理配置，先打开我们前面配置的 8081 端口虚拟站点配置文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/8081.conf</span><br></pre></td></tr></table></figure>
-<p><img src="//ws3.sinaimg.cn/large/889d1a94gy1fzhshp7dttj216405ogm3.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ws3.sinaimg.cn/large/889d1a94gy1fzhshp7dttj216405ogm3.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>原来的 root 和 index 不要了，换成一个 location 代理地址，看下图</p>
-<p><img src="//wx2.sinaimg.cn/large/889d1a94gy1fziv0a4rtyj21cs05udk2.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//wx2.sinaimg.cn/large/889d1a94gy1fziv0a4rtyj21cs05udk2.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <p>这样当你访问 nginx2.pojian.xyz 的时候 nginx 会帮你反向代理到 <a href="https://pojian.xyz">https://pojian.xyz</a> 这个地址上去，proxy_pass 一般是填写 ip，但填写域名也可以。</p>
 <p><strong>其它一些较常用的反向代理指令</strong></p>
 <ul>
@@ -639,645 +422,336 @@
 <li>gzip_vary : 用于在响应消息头中添加Vary：Accept-Encoding,使代理服务器根据请求头中的Accept-Encoding识别是否启用gzip压缩。</li>
 </ul>
 <p>最简单的配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    .....</span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_types text/plain application/javascript text/css;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="//wx4.sinaimg.cn/large/889d1a94gy1fzixy8p8c4j21820eogsb.jpg" alt="image"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//wx4.sinaimg.cn/large/889d1a94gy1fzixy8p8c4j21820eogsb.jpg" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+        </div>
 
-      
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-01-25T09:08:23.466Z" itemprop="dateUpdated">2019-01-25 17:08:23</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/01/22/nginxbase/" target="_blank" rel="external">https://pojian.xyz/2019/01/22/nginxbase/</a>
+        
     </div>
-
     
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          <div class="social-share-cs" style="text-align: center;"></div>
-          <!--  css & js -->
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-          <script>
-            window.onload = function (){
-              var $config = {
-                disabled            : ['qzone', 'qq', 'google', 'facebook', 'twitter', 'douban', 'tencent', 'linkedin', 'diandian'], 
-                // image               : '', // 图片, 默认取网页中第一个img标签
-                wechatQrcodeTitle   : "微信扫一扫：分享", // 微信二维码提示文字
-                wechatQrcodeHelper  : '<p>扫一扫分享至朋友圈</p>',
-              };
-              socialShare('.social-share-cs', $config);
-            }
-          </script>
-
-          
-            <a href="/tags/nginx/" rel="tag"># nginx</a>
-          
-            <a href="/tags/centos/" rel="tag"># centos</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/01/22/macsshconnection/" rel="next" title="解决Mac下SSH闲时自动断开的问题">
-                <i class="fa fa-chevron-left"></i> 解决Mac下SSH闲时自动断开的问题
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/23/2018/" rel="prev" title="聊聊新的一年">
-                聊聊新的一年 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
+    <footer>
+        <a href="https://pojian.xyz">
+            <img src="/img/avatar.jpg" alt="PAN">
+            PAN
+        </a>
     </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-    <div id="gitalk-container">
-    </div>
-    
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/8156261?s=460&v=4" alt="PAN">
-            
-              <p class="site-author-name" itemprop="name">PAN</p>
-              <p class="site-description motion-element" itemprop="description">研究Web前端开发技术和互联网产品</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">5</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">11</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/webw3c" title="GitHub &rarr; https://github.com/webw3c" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="mailto:719625504@qq.com" title="E-Mail &rarr; mailto:719625504@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装"><span class="nav-number">2.</span> <span class="nav-text">一、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Nginx-配置文件解析"><span class="nav-number">3.</span> <span class="nav-text">二、Nginx 配置文件解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、启动、停止、重启等常用操作"><span class="nav-number">4.</span> <span class="nav-text">三、启动、停止、重启等常用操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、自定义错误页"><span class="nav-number">5.</span> <span class="nav-text">四、自定义错误页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、访问权限设置"><span class="nav-number">6.</span> <span class="nav-text">五、访问权限设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、配置虚拟主机"><span class="nav-number">7.</span> <span class="nav-text">六、配置虚拟主机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、反向代理"><span class="nav-number">8.</span> <span class="nav-text">七、反向代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、开启-Gzip-压缩"><span class="nav-number">9.</span> <span class="nav-text">八、开启 Gzip 压缩</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
+</blockquote>
 
         
-      </div>
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos/">centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://pojian.xyz/2019/01/22/nginxbase/&title=《Nginx 入门篇》 — 破茧&pic=https://pojian.xyz/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://pojian.xyz/2019/01/22/nginxbase/&title=《Nginx 入门篇》 — 破茧&source=研究Web前端开发技术和互联网产品" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://pojian.xyz/2019/01/22/nginxbase/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Nginx 入门篇》 — 破茧&url=https://pojian.xyz/2019/01/22/nginxbase/&via=https://pojian.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://pojian.xyz/2019/01/22/nginxbase/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/01/23/2018/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">聊聊新的一年</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/22/macsshconnection/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">解决Mac下SSH闲时自动断开的问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '',
+          clientSecret: '',
+          repo: '',
+          owner: '',
+          admin: [''],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>PAN &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
     </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">粤ICP备19010048号 </a>&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">PAN</span>
 
-  
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-      <span class="post-meta-item-text">站点总字数：</span>
-    
-    <span title="站点总字数">17k</span>
-  
 
-  
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    
-    <span title="站点阅读时长">16 分钟</span>
-  
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://pojian.xyz/2019/01/22/nginxbase/&title=《Nginx 入门篇》 — 破茧&pic=https://pojian.xyz/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://pojian.xyz/2019/01/22/nginxbase/&title=《Nginx 入门篇》 — 破茧&source=研究Web前端开发技术和互联网产品" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://pojian.xyz/2019/01/22/nginxbase/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Nginx 入门篇》 — 破茧&url=https://pojian.xyz/2019/01/22/nginxbase/&via=https://pojian.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://pojian.xyz/2019/01/22/nginxbase/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://pojian.xyz/2019/01/22/nginxbase/" alt="微信分享二维码">
 </div>
 
 
 
 
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv" title="总访客量">
-      <i class="fa fa-user"></i>
-      <span>总访客量</span>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="site-pv" title="总访问量">
-      <i class="fa fa-eye"></i>
-      <span>总访问量</span>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
 </div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
 
 
 
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1275960655&web_id=1275960655"></script>
-  </div>
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
 
 <script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
 </script>
 
 
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-    
-    
-      
-    
-  
-  <script color="0,0,255" opacity="0.3" zindex="-1" count="66" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
-
-
-  
-
-
-  <script src="/js/src/utils.js?v=6.7.0"></script>
-
-  <script src="/js/src/motion.js?v=6.7.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=6.7.0"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
-
-
-
-  
-  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
-<script src="/js/src/post-details.js?v=6.7.0"></script>
-
-
-
-  
-
-
-  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
-
-  
-  
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
-
-  
-  
-  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
-
-   <script>
-        var gitalk = new Gitalk({
-          clientID: '3f2ae8c2ff9426b6d2ac',
-          clientSecret: '950cef50c68eeeb9b148afba5740f4d706a78ccc',
-          repo: 'webw3c.github.io',
-          owner: 'webw3c',
-          admin: ['webw3c'],
-          id: md5(location.pathname),
-          distractionFreeMode: ''
-        })
-        gitalk.render('gitalk-container')
-       </script>
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-      }
-      else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-      }
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
-
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
-
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
-
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function (i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap');
-      $(e).after($wrap);
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
-        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
-          return $(e).text();
-        }).toArray().join('\n');
-        var ta = document.createElement('textarea');
-        var range = document.createRange(); //For Chrome
-        var sel = window.getSelection(); //For Chrome
-        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-        ta.style.top = yPosition + 'px'; //Prevent page scroll
-        ta.style.position = 'absolute';
-        ta.style.opacity = '0';
-        ta.value = code;
-        ta.textContent = code; //For FireFox
-        ta.contentEditable = true;
-        ta.readOnly = false;
-        document.body.appendChild(ta);
-        range.selectNode(ta);
-        sel.removeAllRanges();
-        sel.addRange(range);
-        ta.setSelectionRange(0, code.length);
-        var result = document.execCommand('copy');
-        
-          if (result) $(this).text('复制成功');
-          else $(this).text('复制失败');
-        
-        ta.blur(); //For iOS
-        $(this).blur();
-      })).on('mouseleave', function (e) {
-        var $b = $(this).find('.copy-btn');
-        setTimeout(function () {
-          $b.text('复制');
-        }, 300);
-      }).append(e);
-    })
-  </script>
-
-
-  
 
 </body>
 </html>
