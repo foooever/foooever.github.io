@@ -82,7 +82,7 @@
                 if (isWX) {
                     var top = main.scrollTop;
                     main.classList.remove('lock');
-                    w.scrollTo(0, top);
+                    // w.scrollTo(0, top);
                 } else {
                     root.classList.remove('lock');
                 }
