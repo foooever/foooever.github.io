@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pojian.xyz/2019/01/16/hello-world/</loc>
+    
+    <lastmod>2019-01-28T06:09:37.582Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://pojian.xyz/categories/index.html</loc>
     
     <lastmod>2019-01-28T01:32:14.377Z</lastmod>
@@ -54,13 +61,6 @@
     <loc>https://pojian.xyz/2019/01/22/macsshconnection/</loc>
     
     <lastmod>2019-01-22T10:53:31.152Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://pojian.xyz/2019/01/16/hello-world/</loc>
-    
-    <lastmod>2019-01-16T10:29:23.090Z</lastmod>
     
   </url>
   
